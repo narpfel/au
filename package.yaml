@@ -1,0 +1,52 @@
+name:
+  au
+version:
+  0.1.0.0
+synopsis:
+  Monadic parser combinators
+description:
+  "`Au` is a small clone of the `parsec` parser combinator library, written
+  to learn about monadic parser combinators."
+license:
+  GPL-3
+license-file:
+  LICENSE
+author:
+  narpfel <narpfel@gmx.de>
+github:
+  narpfel/au
+copyright:
+  (c) 2017-2018 narpfel
+category:
+  Parser
+extra-source-files:
+  - README.md
+  - LICENSE
+
+ghc-options:
+  -Wall
+  -Wextra
+  -O2
+
+default-extensions:
+  - LambdaCase
+  - ParallelListComp
+  - DeriveFunctor
+
+dependencies:
+  - base >= 4.7 && < 5
+  - containers
+  - composition
+
+library:
+  source-dirs:
+    src
+
+executables:
+  json-demo:
+    source-dirs:
+      bin-src
+    main:
+      JsonDemo.hs
+    dependencies:
+      - au
