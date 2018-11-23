@@ -1,0 +1,59 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 2ae96f282f63cb4caf2b319f72d41c23bdcd4c07a3b89b38d466bf1343e6d6fd
+
+name:           au
+version:        0.1.0.0
+synopsis:       Monadic parser combinators
+description:    `Au` is a small clone of the `parsec` parser combinator library, written to learn about monadic parser combinators.
+category:       Parser
+homepage:       https://github.com/narpfel/au#readme
+bug-reports:    https://github.com/narpfel/au/issues
+author:         narpfel <narpfel@gmx.de>
+copyright:      (c) 2017-2018 narpfel
+license:        GPL-3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    LICENSE
+
+source-repository head
+  type: git
+  location: https://github.com/narpfel/au
+
+library
+  exposed-modules:
+      Au.Impl.Json
+      Au.Impl.JsonToken
+      Au.Parser
+  other-modules:
+      Paths_au
+  hs-source-dirs:
+      src
+  default-extensions: LambdaCase ParallelListComp DeriveFunctor
+  ghc-options: -Wall -Wextra -O2
+  build-depends:
+      base >=4.7 && <5
+    , composition
+    , containers
+  default-language: Haskell2010
+
+executable json-demo
+  main-is: JsonDemo.hs
+  other-modules:
+      Paths_au
+  hs-source-dirs:
+      bin-src
+  default-extensions: LambdaCase ParallelListComp DeriveFunctor
+  ghc-options: -Wall -Wextra -O2
+  build-depends:
+      au
+    , base >=4.7 && <5
+    , composition
+    , containers
+  default-language: Haskell2010
