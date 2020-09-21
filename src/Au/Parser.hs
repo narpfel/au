@@ -55,6 +55,9 @@ infixr 5 <:>
 space :: Parser Char Char
 space = matches isSpace
 
+spaces :: Parser Char [Char]
+spaces = many space
+
 newline :: Parser Char Char
 newline = char '\n'
 
