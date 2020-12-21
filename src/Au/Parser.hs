@@ -174,6 +174,20 @@ nothing = pure mempty
 perLine :: Parser Char a -> Parser Char [a]
 perLine = separatedBy' newline
 
+chainl1 :: Parser a b -> Parser a (b -> b -> b) -> Parser a b
+chainl1 p op
+  = foldl (\x (f, y) -> x `f` y)
+  <$> p
+  <*> many ((,) <$> op <*> p)
+
+chainr1 :: Parser a b -> Parser a (b -> b -> b) -> Parser a b
+chainr1 p op = do
+  x <- p
+  optionalOr x $ do
+    f <- op
+    y <- chainr1 p op
+    pure $ x `f` y
+
 peek :: Parser c c
 peek =
   Parser
@@ -186,3 +200,6 @@ peek =
 readSFromParser :: Show a => Tokenizer a -> Parser a b -> ReadS b
 readSFromParser tokenizer parser =
   map (mapSnd $ concatMap show) . run parser . fromJust . parse (some tokenizer)
+
+(.=) :: a -> b -> (a, b)
+(.=) = (,)

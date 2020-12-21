@@ -32,6 +32,7 @@ default-extensions:
   - LambdaCase
   - ParallelListComp
   - DeriveFunctor
+  - TypeApplications
 
 dependencies:
   - base >= 4.7 && < 5
@@ -47,6 +48,13 @@ executables:
     source-dirs:
       bin-src
     main:
-      JsonDemo.hs
+      JsonDemo.Main
+    dependencies:
+      - au
+  bexpr:
+    source-dirs:
+      bin-src
+    main:
+      BasicExpression.Main
     dependencies:
       - au
